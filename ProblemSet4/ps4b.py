@@ -123,9 +123,49 @@ def playGame(wordList):
     4) After the computer or user has played the hand, repeat from step 1
 
     wordList: list (string)
+    
+    Enter u to have yourself play, c to have the computer play: u
     """
     # TO DO... <-- Remove this comment when you code this function
-    print("playGame not yet implemented.") # <-- Remove this when you code this function
+    
+    hand={}
+   
+    while True:
+        command = input('Enter n to deal a new hand, r to replay the last hand, or e to end game: ').lower()
+        
+        if command == 'e':
+           return
+        elif command == 'r':
+            player = input('Enter u to have yourself play, c to have the computer play: ').lower()
+            if player == 'c':
+                if len(hand) == 0:
+                    print('You have not played a hand yet. Please play a new hand first!')
+                else:
+                    compPlayHand(hand, wordList, HAND_SIZE)
+                    print()
+            elif player == 'u':    
+                if len(hand) == 0:
+                     print('You have not played a hand yet. Please play a new hand first!')
+                else:
+                    playHand(hand, wordList, HAND_SIZE)
+                    print()compChooseWord(hand, wordList, n)
+            else:
+                print('Invalid command.')
+        elif command == 'n':
+            player = input('Enter u to have yourself play, c to have the computer play: ').lower()
+            if player == 'c':
+                hand = dealHand(HAND_SIZE)
+                compPlayHand(hand, wordList, HAND_SIZE)
+                print()
+            elif player == 'u':    
+                hand = dealHand(HAND_SIZE)
+                playHand(hand, wordList, HAND_SIZE)
+                print()
+            else:
+                print('Invalid command')
+        else:
+            print('Invalid command.')
+            
 
         
 #
